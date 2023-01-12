@@ -8,7 +8,7 @@ public class Persona {
     private Sexo sexo;
     private float pesoKg;
     private float alturaM;
-
+    private static int idPersona=-1;
 
     // SEXO SERÁ NO POR DEFECTO
     public Persona(String nombre,String apellidos,int edad){
@@ -17,6 +17,7 @@ public class Persona {
         this.edad = edad;
         this.sexo = Sexo.NO;
         this.DNI = generaDNI();
+        idPersona++;
     }
 
     public Persona(String nombre, String apellidos, int edad, String DNI, Sexo sexo, float pesoKg, float alturaM) {
@@ -27,6 +28,7 @@ public class Persona {
         this.sexo = sexo;
         this.pesoKg = pesoKg;
         this.alturaM = alturaM;
+        idPersona++;
     }
 
 
@@ -107,6 +109,6 @@ public class Persona {
     public String toString() {
         return "nombre='" + nombre + '\'' + ", apellidos='" + apellidos + '\'' + ", edad=" + edad +
                 ", DNI='" + DNI + '\'' + ", sexo=" + sexo + ", pesoKg=" + pesoKg +
-                ", alturaM=" + alturaM;
+                ", alturaM=" + alturaM +", idPersona=" + idPersona;
     }
 }

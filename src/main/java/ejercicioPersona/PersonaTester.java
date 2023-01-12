@@ -5,25 +5,38 @@ import java.util.Scanner;
 public class PersonaTester {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+
+        Persona personas[] = new Persona[2];
+        String data[] = {"Name: ","Surname: ","Age: ","DNI: (Only numbers)[ENTER for generate randomly]"};
         String nombre,apellidos,DNI;
         int edad; Sexo sexo;
         float pesoKg,alturaM;
 
-        askForData();
-        nombre = sc.nextLine();
-        apellidos = sc.nextLine();
-        edad = sc.nextInt();
-        DNI = sc.nextLine();
+        for (Persona person: personas) {
+            askForData();
+            System.out.println(data[0]);
+            nombre = sc.nextLine();
+            System.out.println(data[1]);
+            apellidos = sc.nextLine();
+            System.out.println(data[2]);
+            edad = sc.nextInt();
+            System.out.println(data[3]);
+            DNI = sc.nextLine();
 
+            if(checkDNI(DNI)){
+                DNI += Persona.getLetraDNI(DNI);
+                sexo = askForSex();
+                pesoKg = askForWeight();
+                alturaM = askForHeight();
 
-        if(checkDNI(DNI)){
-            DNI += Persona.getLetraDNI(DNI);
-            sexo = askForSex();
-            pesoKg = askForWeight();
-            alturaM = askForHeight();
-        }else {
+                person = new Persona(nombre,apellidos,edad,DNI,sexo,pesoKg,alturaM);
+            }else {
+                person = new Persona(nombre,apellidos,edad);
+            }
 
+            System.out.println(person);
         }
+
     }
 
     private static boolean checkDNI(String dni) {
@@ -67,7 +80,7 @@ public class PersonaTester {
     private static float askForHeight() {
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("Heigth: (in kilograms)");
+        System.out.println("Heigth: (in meters)");
         return sc.nextFloat();
     }
 }
